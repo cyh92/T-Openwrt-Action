@@ -65,7 +65,7 @@ jobs:
     - name: Update Feeds
       run: |
         cd openwrt
-        echo "::set-env name=OPENWRTROOT::$PWD"
+        echo "::set-output name=OPENWRTROOT::$PWD"
         ./scripts/feeds update -a
 
     - name: Install Feeds
