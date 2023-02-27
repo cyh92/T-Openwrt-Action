@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build Project OpenWrt
+name: Build Immortalwrt OpenWrt
 
 on:
   repository_dispatch:
@@ -29,51 +29,50 @@ env:
   CONFIG_FILE: config/project/*.config
   DIY_SH: scripts/project-openwrt.sh
   FEEDS_CONF: feeds.conf.default
-  SSH_ACTIONS: false
-  KMODS_IN_FIRMWARE: false
-  UPLOAD_BIN_DIR: true
+  UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
-  UPLOAD_COWTRANSFER: true
-  UPLOAD_WETRANSFER: true
+  UPLOAD_COWTRANSFER: false
+  UPLOAD_WETRANSFER: false
+  UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
-    - name: Checkout
+    - name: 检查
       uses: actions/checkout@master
 
-    - name: Initialization Environment
+    - name: 初始化环境
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
-        sudo -E apt-get -qq install $(curl -fsSL git.io/depends-ubuntu-2004)
+        sudo -E apt-get -qq install $(curl -fsSL git.io/depends-ubuntu-2204)
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
-
-    - name: Clone Source Code
+    
+    - name: 克隆源代码
       run: |
         df -hT $PWD
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-
-    - name: Update Feeds
+    
+    - name: 更新 Feeds
       run: |
         cd openwrt
         echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
         ./scripts/feeds update -a
-
-    - name: Install Feeds
+    
+    - name: 安装 Feeds
       run: |
         cd $OPENWRTROOT
         ./scripts/feeds install -a
-
-    - name: Load Custom Configuration
+    
+    - name: 加载配置文件
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         [ -e files ] && mv files $OPENWRTROOT/files
@@ -82,7 +81,7 @@ jobs:
         cd $OPENWRTROOT
         ../$DIY_SH
  
-    - name: Download Package
+    - name: 下载包文件
       id: package
       run: |
         cd $OPENWRTROOT
@@ -94,8 +93,8 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-
-    - name: Compile Packages
+    
+    - name: 编译包文件
       id: compile
       run: |
         cd $OPENWRTROOT
@@ -107,8 +106,8 @@ jobs:
         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j1 V=s IGNORE_ERRORS=1
         make package/index
         echo "::set-output name=status::success"
-
-    - name: Set Environment Variable
+    
+    - name: 设置环境变量
       if: steps.compile.outputs.status == 'success'
       run: |
         cd $OPENWRTROOT/bin/packages/*
@@ -125,27 +124,13 @@ jobs:
         echo "SUBTARGET=$SUBTARGET" >> $GITHUB_ENV
         #echo "::set-env name=FIRMWARE::$PWD"
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-
-    - name: Generate Firmware
+    
+    - name: 生成固件
       if: steps.compile.outputs.status == 'success'
       id: generate
       run: |
         cd $OPENWRTROOT
-        mkdir -p files/etc/opkg
-        if "$KMODS_IN_FIRMWARE" = 'true'
-        then
-            mkdir -p files/www/snapshots/targets
-            cp -r bin/targets/$TARGET files/www/snapshots/targets
-            cp ../config/opkg/distfeeds-18.06-local.conf files/etc/opkg/distfeeds.conf
-            sed -i "s/subtarget/$SUBTARGET/g" files/etc/opkg/distfeeds.conf
-            sed -i "s/target\//$TARGET\//g" files/etc/opkg/distfeeds.conf
-            sed -i "s/platform/$PLATFORM/g" files/etc/opkg/distfeeds.conf
-        else
-            cp ../config/opkg/distfeeds-18.06-remote.conf files/etc/opkg/distfeeds.conf
-            sed -i "s/subtarget/$SUBTARGET/g" files/etc/opkg/distfeeds.conf
-            sed -i "s/target\//$TARGET\//g" files/etc/opkg/distfeeds.conf
-            sed -i "s/platform/$PLATFORM/g" files/etc/opkg/distfeeds.conf
-        fi
+        mkdir -p files/etc/opkg        
         make package/install -j$(nproc) || make package/install -j1 V=s
         make target/install -j$(nproc) || make target/install -j1 V=s
         make checksum
@@ -155,70 +140,77 @@ jobs:
         echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
         echo "::set-output name=status::success"
         
-    - name: Deploy Packages-Server
-      if: steps.generate.outputs.status == 'success'
-      run: |
-        mkdir -p server/web/snapshots/targets/$TARGET/$SUBTARGET
-        cp -r $OPENWRTROOT/bin/packages server/web/snapshots
-        cp -r $OPENWRTROOT/bin/targets/$TARGET/$SUBTARGET/packages server/web/snapshots/targets/$TARGET/$SUBTARGET
-        mkdir -p $OPENWRTROOT/bin/targets/$TARGET/$SUBTARGET/pre-packages-server
-        cp -r server $OPENWRTROOT/bin/targets/$TARGET/$SUBTARGET/pre-packages-server
-        cd $OPENWRTROOT/bin/targets/$TARGET/$SUBTARGET
-        zip -q -r packages-server.zip pre-packages-server/server
-        
-    - name: Upload Config
-      uses: actions/upload-artifact@master
-      if: steps.generate.outputs.status == 'success'
-      with:
-        name: config.seed
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/config.seed
-        
-    - name: Upload Packages-Server
-      uses: actions/upload-artifact@master
-      if: steps.generate.outputs.status == 'success'
-      with:
-        name: packages-server
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/pre-packages-server
-        
-    - name: Upload Images Sha256sums
-      uses: actions/upload-artifact@master
-      if: steps.generate.outputs.status == 'success'
-      with:
-        name: sha256sums
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/sha256sums
-        
-    - name: Upload Bin Directory
+    - name: 检查空间使用情况
+      if: (!cancelled())
+      run: df -hT
+
+    - name: 上传Bin目录
       uses: actions/upload-artifact@master
       if: steps.generate.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
         name: openwrt-bin-directory${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
 
-    - name: Organize Files
+    - name: 整理文件
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         cd openwrt/bin/targets/$TARGET/$SUBTARGET
         rm -rf packages pre-packages-server
         echo "::set-output name=status::success"
-
-    - name: Upload Firmware Directory
+    
+    - name: 上传固件目录
       uses: actions/upload-artifact@master
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         name: openwrt-firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
-    - name: Upload Firmware To CowTransfer
+    - name: 上传固件到 CowTransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
       run: |
         curl -fsSL git.io/file-transfer | sh
         ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
-
-    - name: Upload Firmware To WeTransfer
+    
+    - name: 上传固件到 WeTransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
       run: |
         curl -fsSL git.io/file-transfer | sh
         ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
         echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+
+    - name: 生成发布标签
+      id: tag
+      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+      run: |
+        echo "::set-output name=release_tag::Openwrt_${{ env.FILE_DATE }}"
+        touch release.txt
+        [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
+        [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
+        echo "::set-output name=status::success"
+
+    - name: 上传固件到 Release
+      uses: softprops/action-gh-release@v1
+      if: steps.tag.outputs.status == 'success' && !cancelled()
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.tag.outputs.release_tag }}
+        body_path: release.txt
+        files: ${{ env.FIRMWARE }}/*
+    
+    - name:  删除工作流
+      uses: GitRML/delete-workflow-runs@main
+      with:
+        retain_days: 1
+        keep_minimum_runs: 3
+
+    - name:  删除旧版本
+      uses: dev-drprasad/delete-older-releases@v0.1.0
+      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+      with:
+        keep_latest: 3
+        delete_tags: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
