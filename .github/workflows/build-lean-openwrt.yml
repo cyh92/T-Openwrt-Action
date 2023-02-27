@@ -13,9 +13,9 @@ on:
   workflow_dispatch:
   release:
     types: published
-  push:
-    branches:
-      - master
+#  push:
+#    branches:
+#      - master
 #    paths:
 #      - 'config/lean/*.config'
 #  schedule:
