@@ -16,8 +16,8 @@ on:
   push:
     branches:
       - master
-    paths:
-      - 'config/offical/*.config'
+#    paths:
+#      - 'config/offical/*.config'
 #  schedule:
 #    - cron: 0 8 * * 5
   watch:
