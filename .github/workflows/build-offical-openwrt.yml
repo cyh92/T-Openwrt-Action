@@ -84,11 +84,7 @@ jobs:
         ../$DIY_SH
         ## If your device is Raspberrt Pi 4B:
         # chmod +x ../scripts/enable-rpi4-wifi.sh
-        # ../scripts/enable-rpi4-wifi.sh
-
-    - name: SSH Connection To Actions
-      uses: P3TERX/debugger-action@master
-      if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')
+        # ../scripts/enable-rpi4-wifi.sh  
 
     - name: Download Package
       id: package
