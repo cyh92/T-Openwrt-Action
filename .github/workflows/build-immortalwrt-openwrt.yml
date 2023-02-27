@@ -25,7 +25,7 @@ on:
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
-  REPO_BRANCH: openwrt-18.06-k5.4
+  REPO_BRANCH: master
   CONFIG_FILE: config/project/*.config
   DIY_SH: scripts/project-openwrt.sh
   FEEDS_CONF: feeds.conf.default
