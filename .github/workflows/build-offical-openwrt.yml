@@ -88,11 +88,7 @@ jobs:
     - name: 下载包文件
       id: package
       run: |
-        cd $OPENWRTROOT
-        if "$KMODS_IN_FIRMWARE" = 'true'
-        then
-            echo "CONFIG_ALL_KMODS=y" >> .config
-        fi
+        cd $OPENWRTROOT       
         make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
