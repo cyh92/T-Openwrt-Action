@@ -11,13 +11,13 @@ name: Build Immortalwrt OpenWrt
 on:
   repository_dispatch:
   workflow_dispatch:
-  release:
-    types: published
-  push:
-    branches:
-      - master
-    paths:
-      - 'config/project/*.config'
+#  release:
+#    types: published
+#  push:
+#    branches:
+#      - master
+#    paths:
+#      - 'config/project/*.config'
 #  schedule:
 #    - cron: 0 8 * * 5
   watch:
