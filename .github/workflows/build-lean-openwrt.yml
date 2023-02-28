@@ -11,8 +11,8 @@ name: Build Lean's OpenWrt
 on:
   repository_dispatch:
   workflow_dispatch:
-  release:
-    types: published
+#  release:
+#    types: published
 #  push:
 #    branches:
 #      - master
