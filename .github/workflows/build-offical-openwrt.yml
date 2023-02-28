@@ -11,11 +11,11 @@ name: Build Offical OpenWrt
 on:
   repository_dispatch: 
   workflow_dispatch:
-  release:
-    types: published
-  push:
-    branches:
-      - master
+#  release:
+#    types: published
+#  push:
+#    branches:
+#      - master
 #    paths:
 #      - 'config/offical/*.config'
 #  schedule:
