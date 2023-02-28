@@ -26,7 +26,7 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  CONFIG_FILE: config/lean/r1.config
+  CONFIG_FILE: config/lean/hiwifi.config
   DIY_SH: scripts/lean-openwrt.sh
   FEEDS_CONF: feeds.conf.default
   UPLOAD_BIN_DIR: true
