@@ -11,6 +11,17 @@ name: Build Lean's OpenWrt
 on:
   repository_dispatch:
   workflow_dispatch:
+   inputs:      
+    config:
+     description: '选择设备配置'
+     required: true
+     default: 'hiwifi.config'
+     type: choice
+     options:
+      - hiwifi.config
+      - mini.config
+      - cm520.config
+      
 #  release:
 #    types: published
 #  push:
@@ -22,11 +33,12 @@ on:
 #    - cron: 0 8 * * 5
   watch:
    types: started
+  
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  CONFIG_FILE: config/lean/hiwifi.config
+  CONFIG_FILE: config/lean/${{ github.event.inputs.config }}
   DIY_SH: scripts/lean-openwrt.sh
   FEEDS_CONF: feeds/lean/feeds.conf.default
   UPLOAD_BIN_DIR: true
