@@ -26,9 +26,9 @@ on:
 env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: master
-  CONFIG_FILE: config/offical/*.config
+  CONFIG_FILE: config/offical/hiwifi.config
   DIY_SH: scripts/offical-openwrt.sh
-  FEEDS_CONF: feeds.conf.default
+  FEEDS_CONF: feeds/offical/feeds.conf.default
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
