@@ -11,6 +11,16 @@ name: Build Project OpenWrt
 on:
   repository_dispatch:
   workflow_dispatch:
+   inputs:      
+    config:
+     description: '选择设备配置'
+     required: true
+     default: 'hiwifi.config'
+     type: choice
+     options:
+      - hiwifi.config
+      - mini.config
+      - cm520.config
 #  release:
 #    types: published
 #  push:
