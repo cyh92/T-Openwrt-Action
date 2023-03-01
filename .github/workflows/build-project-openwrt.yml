@@ -21,7 +21,7 @@ on:
       - hiwifi.config
       - mini.config
       - cm520.config
-      - gdock.config
+      - x86_64.config
 #  release:
 #    types: published
 #  push:
