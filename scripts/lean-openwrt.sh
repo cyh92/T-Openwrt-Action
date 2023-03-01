@@ -37,7 +37,7 @@ pushd package/community
 #git clone --depth=1 https://github.com/rufengsuixing/luci-app-adguardhome
 
 # Add Rclone-OpenWrt
-git clone --depth=1 https://github.com/ElonH/Rclone-OpenWrt
+# git clone --depth=1 https://github.com/ElonH/Rclone-OpenWrt
 
 # Add luci-app-diskman
 #git clone --depth=1 https://github.com/lisaac/luci-app-diskman
@@ -51,8 +51,8 @@ git clone --depth=1 https://github.com/ElonH/Rclone-OpenWrt
 #rm -rf ../lean/luci-app-docker
 
 # Add luci-theme-argon
-git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon
-rm -rf ../lean/luci-theme-argon
+# git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon
+# rm -rf ../lean/luci-theme-argon
 
 # Add tmate
 #svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/tmate
