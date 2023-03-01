@@ -11,6 +11,16 @@ name: Build Offical OpenWrt
 on:
   repository_dispatch: 
   workflow_dispatch:
+   inputs:      
+    config:
+     description: '选择设备配置'
+     required: true
+     default: 'hiwifi.config'
+     type: choice
+     options:
+      - hiwifi.config
+      - mini.config
+      - cm520.config
 #  release:
 #    types: published
 #  push:
@@ -26,7 +36,7 @@ on:
 env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: master
-  CONFIG_FILE: config/offical/hiwifi.config
+  CONFIG_FILE: config/offical/${{ github.event.inputs.config }}
   DIY_SH: scripts/offical-openwrt.sh
   FEEDS_CONF: feeds/offical/feeds.conf.default
   UPLOAD_BIN_DIR: false

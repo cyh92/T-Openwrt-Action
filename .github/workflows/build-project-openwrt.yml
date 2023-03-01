@@ -28,7 +28,7 @@ env:
   REPO_BRANCH: master
   CONFIG_FILE: config/project/*.config
   DIY_SH: scripts/project-openwrt.sh
-  FEEDS_CONF: feeds.conf.default
+  FEEDS_CONF: feeds/project/feeds.conf.default
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
