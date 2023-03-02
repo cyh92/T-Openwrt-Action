@@ -20,7 +20,7 @@ on:
      options:
       - hiwifi.config
       - mini.config
-      - cm520.config
+      - cm520-87f.config
       
 #  release:
 #    types: published

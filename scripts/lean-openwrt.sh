@@ -84,6 +84,7 @@
 # rm -rf libssh
 # svn co https://github.com/openwrt/packages/trunk/libs/libssh
 # popd
+#设置版本为当前时间
 date=`date +%Y.%m.%d`
 TEMP=$(date +"%Y%m%d_%H%M%S")
 sed -i -e "/\(# \)\?REVISION:=/c\REVISION:=$date" -e '/VERSION_CODE:=/c\VERSION_CODE:=$(REVISION)' include/version.mk
