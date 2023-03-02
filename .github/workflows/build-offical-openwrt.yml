@@ -21,7 +21,7 @@ on:
       - hiwifi.config
       - mini.config
       - cm520.config      
-      - x86_64.config
+      - cm502-87f.config
 #  release:
 #    types: published
 #  push:
@@ -37,7 +37,7 @@ on:
 env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: master
-  CONFIG_FILE: config/offical/x86_64.config
+  CONFIG_FILE: config/offical/cm502-87f.config
   DIY_SH: scripts/offical-openwrt.sh
   FEEDS_CONF: feeds/offical/feeds.conf.default
   UPLOAD_BIN_DIR: false
