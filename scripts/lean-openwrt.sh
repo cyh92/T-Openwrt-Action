@@ -9,13 +9,13 @@
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
 
 # Add luci-app-ssr-plus
-pushd package/lean
-git clone --depth=1 https://github.com/fw876/helloworld
-popd
+# pushd package/lean
+# git clone --depth=1 https://github.com/fw876/helloworld
+# popd
 
-# Clone community packages to package/community
-mkdir package/community
-pushd package/community
+# # Clone community packages to package/community
+# mkdir package/community
+# pushd package/community
 
 # Add Lienol's Packages
 #git clone --depth=1 https://github.com/SuLingGG/openwrt-package
@@ -77,13 +77,17 @@ pushd package/community
 
 # Add OpenAppFilter
 # git clone --depth=1 https://github.com/destan19/OpenAppFilter
-popd
+# popd
 
 # Fix libssh
 # pushd feeds/packages/libs
 # rm -rf libssh
 # svn co https://github.com/openwrt/packages/trunk/libs/libssh
-popd
+# popd
+date=`date +%Y.%m.%d`
+TEMP=$(date +"%Y%m%d_%H%M%S")
+sed -i -e "/\(# \)\?REVISION:=/c\REVISION:=$date" -e '/VERSION_CODE:=/c\VERSION_CODE:=$(REVISION)' include/version.mk
+sed -i "s/OpenWrt /v${TEMP}\/ /g" package/lean/default-settings/files/zzz-default-settings
 # 删除自定义源默认的 argon 主题
 rm -rf package/lean/luci-theme-argon
 # 部分第三方源自带 argon 主题，上面命令删除不掉的请运行下面命令
