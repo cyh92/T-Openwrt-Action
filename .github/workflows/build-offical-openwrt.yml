@@ -71,6 +71,11 @@ jobs:
       run: |
         df -hT $PWD
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+    
+    - name: 加载自定义 feeds
+      run: |
+        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+
 
     - name: 更新 Feeds
       run: |
@@ -86,7 +91,7 @@ jobs:
 
     - name: 加载配置文件
       run: |
-        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+        # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         [ -e files ] && mv files $OPENWRTROOT/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config
         cat config/general-packages.config >> $OPENWRTROOT/.config
@@ -101,8 +106,6 @@ jobs:
       id: package
       run: |
         cd $OPENWRTROOT       
-        configFile=cat .config
-        echo "configFile=$configFile" >> $GITHUB_ENV
         make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
