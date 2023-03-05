@@ -115,23 +115,23 @@ jobs:
         make package/index
         echo "::set-output name=status::success"
     
-    - name: 设置环境变量
-      if: steps.compile.outputs.status == 'success'
-      run: |
-        cd $OPENWRTROOT/bin/packages/*
-        PLATFORM=$(basename `pwd`)
-        #echo "::set-env name=PLATFORM::$PLATFORM"
-        echo "PLATFORM=$PLATFORM" >> $GITHUB_ENV
-        cd $OPENWRTROOT/bin/targets/*
-        TARGET=$(basename `pwd`)
-        #echo "::set-env name=TARGET::$TARGET"
-        echo "TARGET=$TARGET" >> $GITHUB_ENV
-        cd *
-        SUBTARGET=$(basename `pwd`)
-        #echo "::set-env name=SUBTARGET::$SUBTARGET"
-        echo "SUBTARGET=$SUBTARGET" >> $GITHUB_ENV
-        #echo "::set-env name=FIRMWARE::$PWD"
-        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+    # - name: 设置环境变量
+    #   if: steps.compile.outputs.status == 'success'
+    #   run: |
+    #     cd $OPENWRTROOT/bin/packages/*
+    #     PLATFORM=$(basename `pwd`)
+    #     #echo "::set-env name=PLATFORM::$PLATFORM"
+    #     echo "PLATFORM=$PLATFORM" >> $GITHUB_ENV
+    #     cd $OPENWRTROOT/bin/targets/*
+    #     TARGET=$(basename `pwd`)
+    #     #echo "::set-env name=TARGET::$TARGET"
+    #     echo "TARGET=$TARGET" >> $GITHUB_ENV
+    #     cd *
+    #     SUBTARGET=$(basename `pwd`)
+    #     #echo "::set-env name=SUBTARGET::$SUBTARGET"
+    #     echo "SUBTARGET=$SUBTARGET" >> $GITHUB_ENV
+    #     #echo "::set-env name=FIRMWARE::$PWD"
+    #     echo "FIRMWARE=$PWD" >> $GITHUB_ENV
     
     - name: 生成固件
       if: steps.compile.outputs.status == 'success'
@@ -163,8 +163,9 @@ jobs:
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
-        cd openwrt/bin/targets/$TARGET/$SUBTARGET
+        cd openwrt/bin/targets/*/*
         rm -rf packages pre-packages-server
+        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "::set-output name=status::success"
     
     - name: 上传固件目录
