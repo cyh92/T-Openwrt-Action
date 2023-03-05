@@ -19,8 +19,7 @@ on:
      type: choice
      options:
       - hiwifi.config
-      - mini.config
-      - cm520.config      
+      - mini.config     
       - cm502-87f.config
 #  release:
 #    types: published

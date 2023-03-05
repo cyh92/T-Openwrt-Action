@@ -21,7 +21,6 @@ on:
       - hiwifi.config
       - mini.config
       - cm520.config
-      - x86_64.config
 #  release:
 #    types: published
 #  push:
