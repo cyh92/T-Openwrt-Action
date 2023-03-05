@@ -81,7 +81,6 @@ jobs:
       run: |
         cd openwrt
         echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
-        # sed -i 's/luci.git/luci.git\;openwrt-19.07/g' feeds.conf.default
         ./scripts/feeds update -a
 
     - name: 安装 Feeds
@@ -91,7 +90,6 @@ jobs:
 
     - name: 加载配置文件
       run: |
-        # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         [ -e files ] && mv files $OPENWRTROOT/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config
         cat config/general-packages.config >> $OPENWRTROOT/.config

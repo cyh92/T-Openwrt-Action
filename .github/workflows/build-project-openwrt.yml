@@ -89,7 +89,6 @@ jobs:
     
     - name: 加载配置文件
       run: |
-        # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         [ -e files ] && mv files $OPENWRTROOT/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config
         cat config/general-packages.config >> $OPENWRTROOT/.config
@@ -148,7 +147,6 @@ jobs:
         make checksum
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
-        #echo "::set-env name=FILE_DATE::_$(date +"%Y%m%d%H%M")"
         echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
         echo "::set-output name=status::success"
         
