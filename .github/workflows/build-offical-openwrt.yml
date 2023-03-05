@@ -101,6 +101,8 @@ jobs:
       id: package
       run: |
         cd $OPENWRTROOT       
+        configFile=cat .config
+        echo "configFile=$configFile" >> $GITHUB_ENV
         make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
