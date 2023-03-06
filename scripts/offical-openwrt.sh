@@ -6,8 +6,9 @@
 # Blog: https://p3terx.com
 #=================================================
 # Modify default IP
-sed -i "s/192.168.1.1/192.168.50.5/g" package/base-files/files/bin/config_generate
-
+sed -i "s/192.168.1.1/$1/g" package/base-files/files/bin/config_generate
+echo "设备IP参数为：$1";
+#cat package/base-files/files/bin/config_generate
 # Clone Lean's latest sources.
 # pushd package
 # git clone --depth=1 https://github.com/coolsnowwolf/lede

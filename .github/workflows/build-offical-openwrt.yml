@@ -11,7 +11,11 @@ name: Build Offical OpenWrt
 on:
   repository_dispatch: 
   workflow_dispatch:
-   inputs:      
+   inputs:  
+    defaultIP:
+        description: '管理地址IP'
+        required: true
+        default: '192.168.3.1'     
     config:
      description: '选择设备'
      required: true
@@ -94,7 +98,7 @@ jobs:
         cat config/general-packages.config >> $OPENWRTROOT/.config
         chmod +x $DIY_SH
         cd $OPENWRTROOT
-        ../$DIY_SH
+        ../$DIY_SH ${{ github.event.inputs.defaultIP }}
         ## If your device is Raspberrt Pi 4B:
         # chmod +x ../scripts/enable-rpi4-wifi.sh
         # ../scripts/enable-rpi4-wifi.sh

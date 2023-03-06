@@ -11,7 +11,11 @@ name: Build Project OpenWrt
 on:
   repository_dispatch:
   workflow_dispatch:
-   inputs:      
+   inputs:  
+    defaultIP:
+        description: '管理地址IP'
+        required: true
+        default: '192.168.3.1'         
     config:
      description: '选择设备'
      required: true
@@ -93,7 +97,7 @@ jobs:
         cat config/general-packages.config >> $OPENWRTROOT/.config
         chmod +x $DIY_SH
         cd $OPENWRTROOT
-        ../$DIY_SH
+        ../$DIY_SH ${{ github.event.inputs.defaultIP }}
  
     - name: 下载包文件
       id: package

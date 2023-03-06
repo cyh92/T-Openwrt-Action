@@ -6,7 +6,8 @@
 # Blog: https://p3terx.com
 #=================================================
 # Modify default IP
-sed -i "s/192.168.1.1/192.168.50.5/g" package/base-files/files/bin/config_generate
+sed -i "s/192.168.1.1/$1/g" package/base-files/files/bin/config_generate
+echo "设备IP参数为：$1";
 #设置版本为当前时间
 date=`date +%Y.%m.%d`
 sed -i -e "/\(# \)\?REVISION:=/c\REVISION:=$date" -e '/VERSION_CODE:=/c\VERSION_CODE:=$(REVISION)' include/version.mk
