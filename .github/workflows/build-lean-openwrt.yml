@@ -38,6 +38,7 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
+  IPAddress: 192.168.10.1
   CONFIG_FILE: config/lean/${{ github.event.inputs.config }}
   DIY_SH: scripts/lean-openwrt.sh
   FEEDS_CONF: feeds/lean/feeds.conf.default
@@ -95,12 +96,12 @@ jobs:
         cat config/general-packages.config >> $OPENWRTROOT/.config
         chmod +x $DIY_SH
         cd $OPENWRTROOT
-        ../$DIY_SH
+        ../$DIY_SH $IPAddress
 
     - name: 下载包文件
       id: package
       run: |
-        cd $OPENWRTROOT    
+        cd $OPENWRTROOT  
         make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
