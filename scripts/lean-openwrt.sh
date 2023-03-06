@@ -6,8 +6,8 @@
 # Blog: https://p3terx.com
 #=================================================
 # Modify default IP
-#sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
-
+sed -i "s/192.168.1.1/$1/g" package/base-files/files/bin/config_generate
+echo "设备IP参数为：$1";
 # Add luci-app-ssr-plus
 # pushd package/lean
 # git clone --depth=1 https://github.com/fw876/helloworld
@@ -99,5 +99,3 @@ git clone --depth=1 https://github.com/cyh92/luci-theme-argon package/luci-theme
 #git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 #全能推送
 #git clone https://github.com/cyh92/luci-app-pushbot package/luci-app-pushbot
-
-echo "执行的文件名：$1";
