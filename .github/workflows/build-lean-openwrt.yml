@@ -11,7 +11,11 @@ name: Build Lean's OpenWrt
 on:
   repository_dispatch:
   workflow_dispatch:
-   inputs:      
+   inputs:     
+    defaultIP:
+        description: '管理地址IP'
+        required: false
+        default: '192.168.3.1' 
     config:
      description: '选择设备'
      required: true
@@ -38,7 +42,6 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  IPAddress: 192.168.10.1
   CONFIG_FILE: config/lean/${{ github.event.inputs.config }}
   DIY_SH: scripts/lean-openwrt.sh
   FEEDS_CONF: feeds/lean/feeds.conf.default
@@ -96,7 +99,7 @@ jobs:
         cat config/general-packages.config >> $OPENWRTROOT/.config
         chmod +x $DIY_SH
         cd $OPENWRTROOT
-        ../$DIY_SH $IPAddress
+        ../$DIY_SH ${{ github.event.inputs.defaultIP }}
 
     - name: 下载包文件
       id: package
