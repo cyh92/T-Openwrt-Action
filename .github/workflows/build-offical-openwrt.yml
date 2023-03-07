@@ -25,6 +25,8 @@ on:
       - hiwifi.config
       - mini.config     
       - cm502-87f.config
+      - x86_64.config
+
 #  release:
 #    types: published
 #  push:
