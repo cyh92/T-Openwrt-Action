@@ -11,20 +11,7 @@ name: Build ipq40xx OpenWrt
 on:
   repository_dispatch:
   workflow_dispatch:
-   inputs:  
-    defaultIP:
-        description: '管理地址IP'
-        required: true
-        default: '192.168.3.1'         
-    config:
-     description: '选择设备'
-     required: true
-     default: 'hiwifi.config'
-     type: choice
-     options:
-      - hiwifi.config
-      - mini.config
-      - cm520.config
+   
 #  release:
 #    types: published
 #  push:
