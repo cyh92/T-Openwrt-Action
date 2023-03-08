@@ -11,10 +11,20 @@ name: Build ipq40x
 on:
   repository_dispatch:
   workflow_dispatch:
-  # schedule:
-  #  - cron: 0 18 * * *
-  watch:
-     types: started
+   inputs:  
+    defaultIP:
+        description: '管理地址IP'
+        required: true
+        default: '192.168.3.1'         
+    config:
+     description: '选择设备'
+     required: true
+     default: 'hiwifi.config'
+     type: choice
+     options:
+      - hiwifi.config
+      - mini.config
+      - cm520.config
 
 env:
   CONFIG_FILE: config/ipq40xx/generic.config
