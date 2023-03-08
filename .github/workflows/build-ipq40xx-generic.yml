@@ -9,6 +9,7 @@
 name: Build ipq40xx/generic openwrt
 
 on:
+  repository_dispatch:
   workflow_dispatch:
   # schedule:
   #  - cron: 0 18 * * *
