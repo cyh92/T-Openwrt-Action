@@ -300,7 +300,7 @@ jobs:
         run: |
           [ -e files ] && mv files $OPENWRT_ROOT_PATH/files
           [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_ROOT_PATH/.config
-          cat config/general-packages.config >> $OPENWRT_ROOT_PATH/.config
+          cat config/ipq40xx/packages.config >> $OPENWRT_ROOT_PATH/.config
           cd $OPENWRT_ROOT_PATH
           chmod +x $GITHUB_WORKSPACE/scripts/*.sh
           $GITHUB_WORKSPACE/$DIY_SH
