@@ -92,6 +92,7 @@ jobs:
     
     - name: 加载配置文件
       run: |
+        cat ipq40xx/config/generic.config
         [ -e files ] && mv files $OPENWRTROOT/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config
         cat ipq40xx/config/generic.config >> $OPENWRTROOT/.config
