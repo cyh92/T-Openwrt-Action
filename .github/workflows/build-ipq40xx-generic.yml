@@ -52,7 +52,7 @@ jobs:
       TOOLCHAIN_IMAGE: ${{ steps.env.outputs.TOOLCHAIN_IMAGE }}
 
     steps:
-      - name: Initialization Environment
+      - name: 初始化环境
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
@@ -65,10 +65,10 @@ jobs:
           docker image prune -a -f
           mkdir -p workspace
 
-      - name: Checkout
+      - name: 检查
         uses: actions/checkout@main
 
-      - name: Clone Source Code
+      - name: 克隆源代码
         id: clone
         run: |
           df -hT $PWD
@@ -77,7 +77,7 @@ jobs:
           echo "OPENWRT_ROOT_PATH=$PWD" >> $GITHUB_ENV
           echo "::set-output name=OPENWRT_ROOT_PATH::$(echo $PWD)"
 
-      - name: Generate Toolchain Config
+      - name: 生成工具链配置
         run: |
           [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_ROOT_PATH/.config
           echo -e "\nCONFIG_ALL=y" >> $OPENWRT_ROOT_PATH/.config
@@ -85,7 +85,7 @@ jobs:
           cd $OPENWRT_ROOT_PATH
           make defconfig > /dev/null 2>&1
 
-      - name: Generate Variables
+      - name: 生成变量
         id: env
         run: |
           export CURRENT_BRANCH="$(git symbolic-ref --short HEAD)"
@@ -129,7 +129,7 @@ jobs:
         run: |
           [ -e $FEEDS_CONF ] && mv $FEEDS_CONF $OPENWRT_ROOT_PATH/feeds.conf.default
 
-      - name: Install Feeds
+      - name: 安装 Feeds
         if: steps.hash.outputs.REBUILD_TOOLCHAIN == 'true'
         run: |
           cd $OPENWRT_ROOT_PATH
@@ -137,7 +137,7 @@ jobs:
           ./scripts/feeds install -a
           make defconfig
 
-      - name: Compile Tools
+      - name: 编译工具
         if: steps.hash.outputs.REBUILD_TOOLCHAIN == 'true'
         run: |
           cd $OPENWRT_ROOT_PATH
