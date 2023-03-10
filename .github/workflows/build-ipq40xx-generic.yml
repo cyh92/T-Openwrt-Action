@@ -25,10 +25,10 @@ on:
    types: started
 
 env:
-  CONFIG_FILE: config/ipq40xx/generic.config
+  CONFIG_FILE: ipq40xx/config/generic.config
   SOURCE_URL: https://github.com/immortalwrt/immortalwrt
   SOURCE_BRANCH: master
-  DIY_SH: scripts/custom.sh
+  DIY_SH: ipq40xx/scripts/custom.sh
   FEEDS_CONF: feeds/project/feeds.conf.default
   TOOLCHAIN_TAG: toolchain
   CLASH_BINARY_PLATFORM: armv7
@@ -307,7 +307,7 @@ jobs:
           [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_ROOT_PATH/.config
           cat config/ipq40xx/packages.config >> $OPENWRT_ROOT_PATH/.config
           cd $OPENWRT_ROOT_PATH
-          chmod +x $GITHUB_WORKSPACE/scripts/*.sh
+          chmod +x $GITHUB_WORKSPACE/ipq40xx/scripts/*.sh
           $GITHUB_WORKSPACE/$DIY_SH
           # $GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_BINARY_PLATFORM
           # $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
@@ -333,7 +333,7 @@ jobs:
       - name: Generate Firmware
         id: generate
         run: |
-          if grep -q $DEVICE_TARGET/$DEVICE_SUBTARGET $GITHUB_WORKSPACE/data/support-targets.txt; then
+          if grep -q $DEVICE_TARGET/$DEVICE_SUBTARGET $GITHUB_WORKSPACE/ipq40xx/data/support-targets.txt; then
             mkdir -p $OPENWRT_ROOT_PATH/files/etc/opkg
             cd $OPENWRT_ROOT_PATH/files/etc/opkg
             # cp $GITHUB_WORKSPACE/data/opkg/distfeeds.conf .
@@ -353,7 +353,7 @@ jobs:
           fi
           cd $OPENWRT_ROOT_PATH
           mkdir -p files/etc/uci-defaults/
-          cp $GITHUB_WORKSPACE/scripts/init-settings.sh files/etc/uci-defaults/99-init-settings
+          cp $GITHUB_WORKSPACE/ipq40xx/scripts/init-settings.sh files/etc/uci-defaults/99-init-settings
           make package/install -j$(nproc) || make package/install -j1 V=s
           make target/install -j$(nproc) || make target/install -j1 V=s
           make json_overview_image_info
