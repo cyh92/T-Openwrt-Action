@@ -40,7 +40,7 @@ on:
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: master
-  CONFIG_FILE: config/ipq40xx/generic.config
+  CONFIG_FILE: config/ipq/generic.config
   DIY_SH: scripts/project-openwrt.sh
   FEEDS_CONF: feeds/project/feeds.conf.default
   UPLOAD_BIN_DIR: true
@@ -94,7 +94,7 @@ jobs:
       run: |
         [ -e files ] && mv files $OPENWRTROOT/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config
-        cat config/ipq40xx/generic.config >> $OPENWRTROOT/.config
+        cat config/ipq/generic.config >> $OPENWRTROOT/.config
         chmod +x $DIY_SH
         cd $OPENWRTROOT
         ../$DIY_SH ${{ github.event.inputs.defaultIP }}
