@@ -23,5 +23,8 @@ find ./ -name luci-theme-argon | xargs rm -rf;
 # git clone --depth=1 https://github.com/cyh92/luci-theme-argon package/luci-theme-argon
 
 git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
-# #全能推送
-# git clone https://github.com/cyh92/luci-app-pushbot package/luci-app-pushbot
+#全能推送
+git clone https://github.com/cyh92/luci-app-pushbot package/luci-app-pushbot
+
+git clone https://github.com/ntlf9t/luci-app-easymesh package/luci-app-easymesh
+
