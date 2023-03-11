@@ -1,10 +1,9 @@
-# [Action-OpenWrt-Plus](https://github.com/SuLingGG/Action-OpenWrt-Rpi)
-
-本项目基于P3TERX 大佬的 Actions-OpenWrt 项目:
-
-<https://github.com/P3TERX/Actions-OpenWrt>
-
-特此感谢～
+|    序号   |     高通平台     |   高通设备编译状态及下载链接 |   插件配置   | 备注说明   |
+| :-----------------: | :-------------: |:-----------------: | :-----------------: |  :-----------------: | 
+| 1 |        [![](https://img.shields.io/badge/OpenWrt-竞斗云-FFFFFF.svg)](https://github.com/IvanSolis1989/OpenWrt-DIY/blob/main/.github/workflows/gdock.yml)         |[![](https://github.com/IvanSolis1989/OpenWrt-DIY/workflows/Build%20G-Dock%20OpenWrt/badge.svg)](https://github.com/IvanSolis1989/OpenWrt-DIY/actions/workflows/gdock.yml) |[![](https://img.shields.io/badge/编译-配置-orange.svg)](https://github.com/IvanSolis1989/OpenWrt-DIY/blob/main/config/Qualcomm/Qualcomm-extra.config)  | | 
+| 2|     [![](https://img.shields.io/badge/OpenWrt-网件_R7800-FFFFFF.svg)](https://github.com/IvanSolis1989/OpenWrt-DIY/blob/main/.github/workflows/R7800.yml)   | [![](https://github.com/IvanSolis1989/OpenWrt-DIY/workflows/Build%20Netgear%20R7800%20OpenWrt/badge.svg)](https://github.com/IvanSolis1989/OpenWrt-DIY/actions/workflows/R7800.yml) |[![](https://img.shields.io/badge/编译-配置-orange.svg)](https://github.com/IvanSolis1989/OpenWrt-DIY/blob/main/config/Qualcomm/Qualcomm-mini-extra.config) |   | 
+| 3|     [![](https://img.shields.io/badge/OpenWrt-星际宝盒_CM520-FFFFFF.svg)](https://github.com/IvanSolis1989/OpenWrt-DIY/blob/main/.github/workflows/CM520.yml)   | [![](https://github.com/IvanSolis1989/OpenWrt-DIY/workflows/Build%20MobiPromo%20CM520%20OpenWrt/badge.svg)](https://github.com/IvanSolis1989/OpenWrt-DIY/actions/workflows/CM520.yml) |[![](https://img.shields.io/badge/编译-配置-orange.svg)](https://github.com/IvanSolis1989/OpenWrt-DIY/blob/main/config/Qualcomm/Qualcomm-extra.config) |   |
+| 4 |        [![](https://img.shields.io/badge/OpenWrt-斐讯_K2T-FFFFFF.svg)](https://github.com/IvanSolis1989/OpenWrt-DIY/blob/main/.github/workflows/K2T.yml)           | [![](https://github.com/IvanSolis1989/OpenWrt-DIY/workflows/Build%20PHICOMM%20K2T%20OpenWrt/badge.svg)](https://github.com/IvanSolis1989/OpenWrt-DIY/actions/workflows/K2T.yml)|[![](https://img.shields.io/badge/编译-配置-orange.svg)](https://github.com/IvanSolis1989/OpenWrt-DIY/blob/main/config/Qualcomm/Qualcomm-mini-extra.config) | |
 
 ## 写在前面
 
