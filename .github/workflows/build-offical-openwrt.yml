@@ -167,7 +167,7 @@ jobs:
         name: openwrt-bin-directory${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
 
-     - name: 整理文件
+    - name: 整理文件
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
