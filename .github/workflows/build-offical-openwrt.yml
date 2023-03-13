@@ -162,7 +162,7 @@ jobs:
 
     - name: 上传Bin目录
       uses: actions/upload-artifact@master
-      if: steps.generate.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
+      if: steps.generate.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true' && !cancelled()
       with:
         name: openwrt-bin-directory${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
