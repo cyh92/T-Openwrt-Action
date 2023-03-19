@@ -25,6 +25,7 @@ on:
       - hiwifi.config
       - mini.config
       - cm520.config
+      - rpi5s.config
 #  release:
 #    types: published
 #  push:
