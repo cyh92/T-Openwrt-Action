@@ -24,7 +24,7 @@ on:
      options:
       - hiwifi.config
       - mini.config
-      - cm520.config
+      - h68k.config
       
 #  release:
 #    types: published
