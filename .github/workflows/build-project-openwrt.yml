@@ -26,6 +26,7 @@ on:
       - mini.config
       - cm520.config
       - rpi5s.config
+      - h68k.config
 #  release:
 #    types: published
 #  push:
