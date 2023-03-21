@@ -25,6 +25,7 @@ on:
       - hiwifi.config
       - mini.config
       - h68k.config
+      - h68k2.config
       
 #  release:
 #    types: published
