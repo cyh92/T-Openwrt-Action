@@ -31,3 +31,7 @@ git clone https://github.com/cyh92/luci-app-pushbot package/luci-app-pushbot
 
 git clone https://github.com/ntlf9t/luci-app-easymesh package/luci-app-easymesh
 
+#支持OpenWrt官方源码22.03版本luci-app-zerotier
+find ./ -name luci-app-zerotier | xargs rm -rf;
+git clone https://github.com/lylus/luci-app-zerotier package/luci-app-zerotier
+
