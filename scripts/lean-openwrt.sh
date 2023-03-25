@@ -99,5 +99,5 @@ git clone --depth=1 https://github.com/cyh92/luci-theme-argon package/luci-theme
 
 #git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 #全能推送
-git clone https://github.com/cyh92/luci-app-pushbot package/luci-app-pushbot
+#git clone https://github.com/cyh92/luci-app-pushbot package/luci-app-pushbot
 
