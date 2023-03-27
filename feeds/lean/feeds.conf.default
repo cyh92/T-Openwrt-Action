@@ -1,4 +1,4 @@
-#src-git cyhpackage https://gitee.com/cyh92/cyhpackage.git
+src-git cyhpackage https://gitee.com/cyh92/cyhpackage.git
 src-git small8 https://github.com/cyh92/small-package
 src-git packages https://github.com/coolsnowwolf/packages
 src-git luci https://github.com/coolsnowwolf/luci
