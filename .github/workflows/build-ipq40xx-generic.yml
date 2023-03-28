@@ -26,10 +26,10 @@ on:
 
 env:
   CONFIG_FILE: ipq40xx/config/generic.config
-  SOURCE_URL: https://github.com/coolsnowwolf/lede
+  SOURCE_URL: https://github.com/immortalwrt/immortalwrt
   SOURCE_BRANCH: master
   DIY_SH: ipq40xx/scripts/custom.sh
-  FEEDS_CONF: feeds/lean/feeds.conf.default
+  FEEDS_CONF: feeds/project/feeds.conf.default
   TOOLCHAIN_TAG: toolchain
   CLASH_BINARY_PLATFORM: armv7
   TOOLCHAIN_RELEASE_UPLOAD: true
