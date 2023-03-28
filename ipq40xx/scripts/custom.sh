@@ -35,3 +35,6 @@ find ./ -name luci-theme-argon | xargs rm -rf;
 git clone --depth=1 https://github.com/cyh92/luci-theme-argon package/luci-theme-argon
 
 # git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
+
+git clone https://github.com/SuLingGG/default-settings package/default-settings
+
