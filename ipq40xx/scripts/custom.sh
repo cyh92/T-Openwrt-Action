@@ -37,4 +37,8 @@ git clone --depth=1 https://github.com/cyh92/luci-theme-argon package/luci-theme
 # git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 
 git clone https://github.com/SuLingGG/default-settings package/default-settings
+#支持OpenWrt官方源码22.03版本luci-app-zerotier
+find ./ -name luci-app-zerotier | xargs rm -rf;
+git clone https://github.com/lylus/luci-app-zerotier package/luci-app-zerotier
+
 
