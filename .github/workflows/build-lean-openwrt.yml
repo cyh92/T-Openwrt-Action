@@ -26,6 +26,7 @@ on:
       - mini.config
       - h68k2.config
       - cm520.config
+      - cm520all.config
       
 #  release:
 #    types: published
