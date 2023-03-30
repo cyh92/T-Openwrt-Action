@@ -29,7 +29,7 @@ env:
   SOURCE_URL: https://github.com/immortalwrt/immortalwrt
   SOURCE_BRANCH: master
   DIY_SH: ipq40xx/scripts/custom.sh
-  FEEDS_CONF: ipq40xx/feeds.conf.default
+  FEEDS_CONF: feeds/project/feeds.conf.default
   TOOLCHAIN_TAG: toolchain
   CLASH_BINARY_PLATFORM: armv7
   TOOLCHAIN_RELEASE_UPLOAD: true
