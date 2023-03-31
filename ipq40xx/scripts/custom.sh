@@ -28,11 +28,11 @@ sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 rm -rf package/ctcgfw/r8168
 
 # 删除自定义源默认的 argon 主题
-#rm -rf package/lean/luci-theme-argon
+rm -rf package/lean/luci-theme-argon
 # 部分第三方源自带 argon 主题，上面命令删除不掉的请运行下面命令
-#find ./ -name luci-theme-argon | xargs rm -rf;
+find ./ -name luci-theme-argon | xargs rm -rf;
 #拉取 argon的源码
-#git clone --depth=1 https://github.com/cyh92/luci-theme-argon package/luci-theme-argon
+git clone --depth=1 https://github.com/cyh92/luci-theme-argon package/luci-theme-argon
 
 #git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 
