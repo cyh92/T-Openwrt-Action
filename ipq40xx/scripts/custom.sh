@@ -26,7 +26,7 @@ popd
 sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 
 rm -rf package/ctcgfw/r8168
-
+git clone https://github.com/SuLingGG/default-settings package/default-settings
 # 删除自定义源默认的 argon 主题
 rm -rf package/lean/luci-theme-argon
 # 部分第三方源自带 argon 主题，上面命令删除不掉的请运行下面命令
