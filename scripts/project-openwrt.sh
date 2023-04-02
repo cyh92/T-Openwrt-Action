@@ -15,6 +15,11 @@ echo "设备IP参数为：$1";
 date=`date +%Y.%m.%d`
 sed -i -e "/\(# \)\?REVISION:=/c\REVISION:=$date" -e '/VERSION_CODE:=/c\VERSION_CODE:=$(REVISION)' include/version.mk
 
+sed -i '/DISTRIB_REVISION/d' /etc/openwrt_release
+echo "DISTRIB_REVISION='R18.06'" >> /etc/openwrt_release
+sed -i '/DISTRIB_DESCRIPTION/d' /etc/openwrt_release
+echo "DISTRIB_DESCRIPTION='$date'" >> /etc/openwrt_release
+
 # Remove r8168 driver
 rm -rf package/ctcgfw/r8168
 
@@ -33,4 +38,6 @@ git clone https://github.com/lylus/luci-app-zerotier package/luci-app-zerotier
 
 
 git clone https://github.com/SuLingGG/default-settings package/default-settings
+uci set uhttpd.main.redirect_https=0
+uci commit uhttpd
 
