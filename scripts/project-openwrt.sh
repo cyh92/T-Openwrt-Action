@@ -37,7 +37,6 @@ find ./ -name luci-app-zerotier | xargs rm -rf;
 git clone https://github.com/lylus/luci-app-zerotier package/luci-app-zerotier
 
 
-git clone https://github.com/SuLingGG/default-settings package/default-settings
-uci set uhttpd.main.redirect_https=0
-uci commit uhttpd
+#git clone https://github.com/SuLingGG/default-settings package/default-settings
+
 
