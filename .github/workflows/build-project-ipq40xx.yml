@@ -40,7 +40,7 @@ on:
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: openwrt-18.06-k5.4
-  CONFIG_FILE: config/project/${{ github.event.inputs.config }}
+  CONFIG_FILE: ipq40xx/config/generic.config
   DIY_SH: ipq40xx/scripts/custom.sh
   FEEDS_CONF: ipq40xx/feeds.conf.default
   UPLOAD_BIN_DIR: true
