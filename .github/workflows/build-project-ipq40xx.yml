@@ -40,7 +40,7 @@ on:
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: openwrt-18.06-k5.4
-  CONFIG_FILE: ipq40xx/config/generic.config
+  CONFIG_FILE: ipq40xx/config/cm520.config
   DIY_SH: ipq40xx/scripts/custom.sh
   FEEDS_CONF: ipq40xx/feeds.conf.default
   UPLOAD_BIN_DIR: true
@@ -97,7 +97,8 @@ jobs:
       run: |
         [ -e files ] && mv files $OPENWRTROOT/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config
-        cat ipq40xx/config/packages.config >> $OPENWRTROOT/.config
+        # cat ipq40xx/config/packages.config >> $OPENWRTROOT/.config
+        cat config/general-packages.config >> $OPENWRTROOT/.config
         chmod +x $DIY_SH
         cd $OPENWRTROOT
         ../$DIY_SH
