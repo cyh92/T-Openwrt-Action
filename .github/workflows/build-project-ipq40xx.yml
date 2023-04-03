@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build Project OpenWrt
+name: Build Project ipq40xx
 
 on:
   repository_dispatch:
