@@ -32,7 +32,7 @@ env:
   FEEDS_CONF: ipq40xx/feeds.conf.default
   TOOLCHAIN_TAG: toolchain
   CLASH_BINARY_PLATFORM: armv7
-  TOOLCHAIN_RELEASE_UPLOAD: true
+  TOOLCHAIN_RELEASE_UPLOAD: false
   FIRMWARE_RELEASE_UPLOAD: true
   WEB_ROOT_PATH: /data/www/openwrt.cc
   TZ: Asia/Shanghai
