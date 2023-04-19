@@ -36,7 +36,10 @@ git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-t
 find ./ -name luci-app-zerotier | xargs rm -rf;
 git clone https://github.com/lylus/luci-app-zerotier package/luci-app-zerotier
 
+find ./ -name luci-app-oaf | xargs rm -rf;
+find ./ -name oaf | xargs rm -rf;
+find ./ -name open-app-filter | xargs rm -rf;
 
-#git clone https://github.com/SuLingGG/default-settings package/default-settings
+git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
 
 
