@@ -23,6 +23,7 @@ on:
      type: choice
      options:
       - hiwifi.config
+      - Newifi3-D2.config
       - mini.config
       - rpi5s.config
 #  release:
