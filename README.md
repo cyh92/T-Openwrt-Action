@@ -1,12 +1,5 @@
 ## 写在前面
-
-本项目基本保留了 [P3TERX/Actions-OpenWrt](https://github.com/P3TERX/Actions-OpenWrt) 项目的特性，
-
-建议首先阅读 P3Terx 大佬的云编译教程后再使用本项目:
-
-[使用 GitHub Actions 云编译 OpenWrt](https://p3terx.com/archives/build-openwrt-with-github-actions.html)
-
-在此之上，本项目还添加了以下特性:
+本项目添加了以下特性:
 
 1. 提供基于 Lean 大 / 官方 OpenWrt snapshot / Project-OpenWrt 三种源码的示例文件模板；
 2. 添加了若干第三方优秀的 OpenWrt 软件包项目 (添加了哪些软件包可在 DIY 脚本文件中查看)；
