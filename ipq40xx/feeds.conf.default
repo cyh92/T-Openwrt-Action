@@ -1,6 +1,6 @@
 #src-git-full cyhpackage https://gitee.com/cyh92/cyhpackage.git
 src-git-full small8 https://github.com/kenzok8/small-package
-src-git packages https://github.com/immortalwrt/packages.git
-src-git luci https://github.com/immortalwrt/luci.git
-src-git routing https://github.com/openwrt/routing.git
-src-git telephony https://github.com/openwrt/telephony.git
+src-git packages https://github.com/immortalwrt/packages.git;openwrt-18.06
+src-git luci https://github.com/immortalwrt/luci.git;openwrt-18.06-k5.4
+src-git routing https://github.com/openwrt/routing.git;openwrt-22.03
+src-git telephony https://github.com/openwrt/telephony.git;openwrt-22.03
