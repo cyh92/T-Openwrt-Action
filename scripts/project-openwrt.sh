@@ -21,7 +21,7 @@ sed -i -e "/\(# \)\?REVISION:=/c\REVISION:=$date" -e '/VERSION_CODE:=/c\VERSION_
 sed -i '/DISTRIB_REVISION/d' package/base-files/files/etc/openwrt_release
 echo "DISTRIB_REVISION='R22.03'" >> package/base-files/files/etc/openwrt_release
 sed -i '/DISTRIB_DESCRIPTION/d' package/base-files/files/etc/openwrt_release
-echo "DISTRIB_DESCRIPTION='v$date \/'" >> package/base-files/files/etc/openwrt_release
+echo "DISTRIB_DESCRIPTION='v$date'" >> package/base-files/files/etc/openwrt_release
 
 # Remove r8168 driver
 rm -rf package/ctcgfw/r8168
