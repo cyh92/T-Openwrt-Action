@@ -6,44 +6,41 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build Fros OpenWrt
+name: Build CR88XX OpenWrt
 
 on:
-  repository_dispatch:
+  repository_dispatch: 
   workflow_dispatch:
    inputs:  
     defaultIP:
         description: '管理地址IP'
         required: true
-        default: '192.168.3.1'         
+        default: '192.168.3.1'     
     config:
      description: '选择设备'
      required: true
-     default: 'hiwifi.config'
+     default: 'ax3000.config'
      type: choice
      options:
-      - hiwifi.config
-      - Newifi3-D2.config
-      - mini.config
-      - rpi5s.config
+      - ax3000.config
 #  release:
 #    types: published
 #  push:
 #    branches:
 #      - master
 #    paths:
-#      - 'config/project/*.config'
+#      - 'config/offical/*.config'
 #  schedule:
 #    - cron: 0 8 * * 5
   watch:
    types: started
 
 env:
-  REPO_URL: https://github.com/openfros/fros
-  REPO_BRANCH: main
-  CONFIG_FILE: config/project/${{ github.event.inputs.config }}
-  DIY_SH: scripts/project-openwrt.sh
-  FEEDS_CONF: feeds/project/feeds.conf.default
+  REPO_URL: https://github.com/hzyitc/openwrt-redmi-ax3000
+  REPO_BRANCH: ipq50xx-mainline-kernel-5.15-openwrt-23.05
+  CONFIG_FILE: config/offical/${{ github.event.inputs.config }}
+  DIY_SH: scripts/offical-openwrt.sh
+  FEEDS_CONF: feeds/offical/feeds.conf.default
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
@@ -70,30 +67,28 @@ jobs:
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
-    
+
     - name: 克隆源代码
       run: |
         df -hT $PWD
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-
+    
     - name: 加载自定义 feeds
       run: |
-       # echo "src-git-full cyhpackage https://gitee.com/cyh92/cyhpackage.git" >> openwrt/feeds.conf.default
-        echo "src-git-full small8 https://github.com/kenzok8/small-package" >> openwrt/feeds.conf.default
-        cat openwrt/feeds.conf.default
-        # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+
 
     - name: 更新 Feeds
       run: |
         cd openwrt
         echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
         ./scripts/feeds update -a
-    
+
     - name: 安装 Feeds
       run: |
         cd $OPENWRTROOT
         ./scripts/feeds install -a
-    
+
     - name: 加载配置文件
       run: |
         [ -e files ] && mv files $OPENWRTROOT/files
@@ -102,17 +97,19 @@ jobs:
         chmod +x $DIY_SH
         cd $OPENWRTROOT
         ../$DIY_SH ${{ github.event.inputs.defaultIP }}
- 
+        ## If your device is Raspberrt Pi 4B:
+        chmod +x ../scripts/wifi-setting.sh
+        ../scripts/wifi-setting.sh
+    
     - name: 下载包文件
       id: package
       run: |
-        cd $OPENWRTROOT     
+        cd $OPENWRTROOT       
         make defconfig
-        ./build.sh -i
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-    
+
     - name: 编译包文件
       id: compile
       run: |
@@ -121,29 +118,25 @@ jobs:
         make tools/compile -j$(nproc) || make tools/compile -j1 V=s
         make toolchain/compile -j$(nproc) || make toolchain/compile -j1 V=s
         make target/compile -j$(nproc) || make target/compile -j1 V=s IGNORE_ERRORS=1
-        make diffconfig
+        make buildinfo
         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j1 V=s IGNORE_ERRORS=1
         make package/index
         echo "::set-output name=status::success"
-    
+
     # - name: 设置环境变量
     #   if: steps.compile.outputs.status == 'success'
     #   run: |
     #     cd $OPENWRTROOT/bin/packages/*
     #     PLATFORM=$(basename `pwd`)
-    #     #echo "::set-env name=PLATFORM::$PLATFORM"
     #     echo "PLATFORM=$PLATFORM" >> $GITHUB_ENV
     #     cd $OPENWRTROOT/bin/targets/*
     #     TARGET=$(basename `pwd`)
-    #     #echo "::set-env name=TARGET::$TARGET"
     #     echo "TARGET=$TARGET" >> $GITHUB_ENV
     #     cd *
     #     SUBTARGET=$(basename `pwd`)
-    #     #echo "::set-env name=SUBTARGET::$SUBTARGET"
     #     echo "SUBTARGET=$SUBTARGET" >> $GITHUB_ENV
-    #     #echo "::set-env name=FIRMWARE::$PWD"
     #     echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-    
+
     - name: 生成固件
       if: steps.compile.outputs.status == 'success'
       id: generate
@@ -156,15 +149,15 @@ jobs:
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
         echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
-        echo "::set-output name=status::success"
-        
+        echo "::set-output name=status::success"        
+
     - name: 检查空间使用情况
       if: (!cancelled())
       run: df -hT
 
     - name: 上传Bin目录
       uses: actions/upload-artifact@master
-      if: steps.generate.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
+      if: steps.generate.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true' && !cancelled()
       with:
         name: openwrt-bin-directory${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
@@ -177,7 +170,7 @@ jobs:
         rm -rf packages pre-packages-server
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "::set-output name=status::success"
-    
+
     - name: 上传固件目录
       uses: actions/upload-artifact@master
       if: steps.organize.outputs.status == 'success' && !cancelled()
@@ -191,7 +184,7 @@ jobs:
         curl -fsSL git.io/file-transfer | sh
         ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
-    
+
     - name: 上传固件到 WeTransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
       run: |
