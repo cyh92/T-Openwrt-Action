@@ -37,7 +37,7 @@ on:
 
 env:
   REPO_URL: https://github.com/hzyitc/openwrt-redmi-ax3000
-  REPO_BRANCH: ipq50xx-mainline-kernel-5.15-openwrt-23.05
+  REPO_BRANCH: ipq50xx-mainline-kernel-5.4-openwrt-21.02-qsdk-wifi-rebase
   CONFIG_FILE: config/offical/${{ github.event.inputs.config }}
   DIY_SH: scripts/offical-openwrt.sh
   FEEDS_CONF: feeds/offical/feeds.conf.default
