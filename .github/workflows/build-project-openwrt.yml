@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build Project OpenWrt
+name: Build ${{ github.event.inputs.config }} OpenWrt
 
 on:
   repository_dispatch:
@@ -22,10 +22,10 @@ on:
      default: 'hiwifi.config'
      type: choice
      options:
-      - hiwifi.config
-      - Newifi3-D2.config
-      - mini.config
-      - rpi5s.config
+      - hiwifi
+      - Newifi3-D2
+      - mini
+      - rpi5s
 #  release:
 #    types: published
 #  push:
@@ -41,7 +41,7 @@ on:
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: master
-  CONFIG_FILE: config/project/${{ github.event.inputs.config }}
+  CONFIG_FILE: config/project/${{ github.event.inputs.config }}.config
   DIY_SH: scripts/project-openwrt.sh
   FEEDS_CONF: feeds/project/feeds.conf.default
   UPLOAD_BIN_DIR: true
