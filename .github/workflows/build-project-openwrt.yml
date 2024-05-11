@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build ${{ github.event.inputs.config }} OpenWrt
+name: Build Project OpenWrt
 
 on:
   repository_dispatch:
