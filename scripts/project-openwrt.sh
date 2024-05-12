@@ -37,8 +37,8 @@ find ./ -name luci-theme-argon | xargs rm -rf;
 git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 
 #支持OpenWrt官方源码22.03版本luci-app-zerotier
-find ./ -name luci-app-zerotier | xargs rm -rf;
-git clone https://github.com/zhengmz/luci-app-zerotier package/luci-app-zerotier
+#find ./ -name luci-app-zerotier | xargs rm -rf;
+#git clone https://github.com/zhengmz/luci-app-zerotier package/luci-app-zerotier
 
 #find ./ -name luci-app-oaf | xargs rm -rf;
 #find ./ -name oaf | xargs rm -rf;
