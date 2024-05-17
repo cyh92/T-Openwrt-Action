@@ -15,7 +15,7 @@ on:
     defaultIP:
         description: '管理地址IP'
         required: true
-        default: '192.168.3.1'         
+        default: '192.168.6.1'         
     config:
      description: '选择设备'
      required: true
@@ -40,7 +40,7 @@ on:
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
-  REPO_BRANCH: master
+  REPO_BRANCH: v23.05.2
   CONFIG_FILE: config/project/${{ github.event.inputs.config }}.config
   DIY_SH: scripts/project-openwrt.sh
   FEEDS_CONF: feeds/project/feeds.conf.default
