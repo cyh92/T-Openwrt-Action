@@ -34,7 +34,7 @@ rm -rf package/lean/luci-theme-argon
 find ./ -name luci-theme-argon | xargs rm -rf;
 #拉取 argon的源码
 # git clone --depth=1 https://github.com/cyh92/luci-theme-argon package/luci-theme-argon
-git clone -b v2.2.2 --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
+git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 
 #支持OpenWrt官方源码22.03版本luci-app-zerotier
 #find ./ -name luci-app-zerotier | xargs rm -rf;
