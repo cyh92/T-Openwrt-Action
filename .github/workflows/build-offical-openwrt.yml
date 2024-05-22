@@ -15,7 +15,11 @@ on:
     defaultIP:
         description: '管理地址IP'
         required: true
-        default: '192.168.3.1'     
+        default: '192.168.3.1' 
+    defaultBranch:
+        description: '使用分支'
+        required: true
+        default: 'v23.05.2'  
     config:
      description: '选择设备'
      required: true
@@ -38,7 +42,7 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: master
+  REPO_BRANCH: ${{ github.event.inputs.defaultBranch }}
   CONFIG_FILE: config/offical/${{ github.event.inputs.config }}
   DIY_SH: scripts/offical-openwrt.sh
   FEEDS_CONF: feeds/offical/feeds.conf.default
