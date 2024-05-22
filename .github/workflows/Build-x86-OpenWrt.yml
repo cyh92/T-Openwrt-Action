@@ -40,7 +40,7 @@ env:
   REPO_BRANCH: v23.05.2
   CONFIG_FILE: config/oui/x86.config
   DIY_SH: scripts/project-openwrt.sh
-  FEEDS_CONF: feeds/project/feeds.conf.default
+  FEEDS_CONF: feeds/offical/feeds.conf.default
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
