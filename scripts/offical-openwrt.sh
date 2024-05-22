@@ -145,3 +145,10 @@ git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-t
 #支持OpenWrt官方源码22.03版本luci-app-zerotier
 find ./ -name luci-app-zerotier | xargs rm -rf;
 git clone https://github.com/zhengmz/luci-app-zerotier package/luci-app-zerotier
+
+#网络设置向导
+git clone https://github.com/sirpdboy/luci-app-netwizard package/luci-app-netwizard
+#高级设置-Plus
+git clone https://github.com/sirpdboy/luci-app-advancedplus package/luci-app-advancedplus
+#家长控制
+git clone https://github.com/sirpdboy/luci-app-parentcontrol package/luci-app-parentcontrol
