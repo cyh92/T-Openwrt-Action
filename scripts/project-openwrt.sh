@@ -50,8 +50,8 @@ rm -rf package/ctcgfw/r8168
 
 #git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
 #网络设置向导
-git clone https://github.com/sirpdboy/luci-app-netwizard package/luci-app-netwizard
+#git clone https://github.com/sirpdboy/luci-app-netwizard package/luci-app-netwizard
 #高级设置-Plus
-git clone https://github.com/sirpdboy/luci-app-advancedplus package/luci-app-advancedplus
+#git clone https://github.com/sirpdboy/luci-app-advancedplus package/luci-app-advancedplus
 #家长控制
-git clone https://github.com/sirpdboy/luci-app-parentcontrol package/luci-app-parentcontrol
+#git clone https://github.com/sirpdboy/luci-app-parentcontrol package/luci-app-parentcontrol
