@@ -26,8 +26,8 @@ echo "DISTRIB_REVISION='R22.03'" >> package/base-files/files/etc/openwrt_release
 sed -i '/DISTRIB_DESCRIPTION/d' package/base-files/files/etc/openwrt_release
 echo "DISTRIB_DESCRIPTION='v$date'" >> package/base-files/files/etc/openwrt_release
 
-rm -r package/emortal/default-settings
-echo "删除成功"
+#rm -r package/emortal/default-settings
+#echo "删除成功"
 
 # Remove r8168 driver
 rm -rf package/ctcgfw/r8168
