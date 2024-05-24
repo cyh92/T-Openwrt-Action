@@ -16,17 +16,21 @@ on:
         description: '管理地址IP'
         required: false
         default: '192.168.3.1' 
+    defaultBranch:
+        description: '使用分支'
+        required: true
+        default: 'master'  
     config:
      description: '选择设备'
      required: true
-     default: 'hiwifi.config'
+     default: 'hiwifi'
      type: choice
      options:
-      - hiwifi.config
-      - mini.config
-      - h68k2.config
-      - cm520.config
-      - newifi3-D2.config
+      - hiwifi
+      - mini
+      - h68k2
+      - cm520
+      - newifi3-D2
       
 #  release:
 #    types: published
@@ -43,8 +47,8 @@ on:
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
-  CONFIG_FILE: config/lean/${{ github.event.inputs.config }}
+  REPO_BRANCH: ${{ github.event.inputs.defaultBranch }}
+  CONFIG_FILE: config/lean/${{ github.event.inputs.config }}.config
   DIY_SH: scripts/lean-openwrt.sh
   FEEDS_CONF: feeds/lean/feeds.conf.default
   UPLOAD_BIN_DIR: true
@@ -81,7 +85,9 @@ jobs:
         
     - name: 加载自定义 feeds
       run: |
-        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+        # echo "src-git-full cyhpackage https://gitee.com/cyh92/cyhpackage.git" >> openwrt/feeds.conf.default
+        cat openwrt/feeds.conf.default
+        #[ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
 
     - name: 更新 Feeds
       run: |
