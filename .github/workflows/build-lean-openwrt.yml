@@ -30,7 +30,7 @@ on:
       - mini
       - h68k2
       - cm520
-      - newifi3-D2
+      - nokia_ea0326gmp
       
 #  release:
 #    types: published
