@@ -97,9 +97,7 @@ jobs:
         chmod +x $DIY_SH
         cd $OPENWRTROOT
         ../$DIY_SH ${{ github.event.inputs.defaultIP }}
-        ## If your device is Raspberrt Pi 4B:
-        chmod +x ../scripts/wifi-setting.sh
-        ../scripts/wifi-setting.sh
+        ## If your device is Raspberrt Pi 4B:        
     
     - name: 下载包文件
       id: package
