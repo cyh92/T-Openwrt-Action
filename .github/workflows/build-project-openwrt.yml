@@ -30,7 +30,7 @@ on:
       - x86
       - mini
       - rpi5s
-      - cmcc_rax3000m
+      - glinet_gl-mt300n-v2
 #  release:
 #    types: published
 #  push:
