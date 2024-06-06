@@ -26,7 +26,7 @@ on:
      default: 'hiwifi'
      type: choice
      options:
-      - hiwifi
+      - glinet_gl-mt300n-v2
       - mini
       - h68k2
       - cm520
