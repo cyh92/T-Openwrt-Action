@@ -23,7 +23,7 @@ on:
     config:
      description: '选择设备'
      required: true
-     default: 'hiwifi.config'
+     default: 'hiwifi'
      type: choice
      options:
       - hiwifi
