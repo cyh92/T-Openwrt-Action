@@ -20,6 +20,11 @@ on:
         description: '使用分支'
         required: true
         default: 'v23.05.2'  
+    loadApp:
+        description: '是否加载插件'
+        required: true
+        default: true
+        type: boolean
     config:
      description: '选择设备'
      required: true
