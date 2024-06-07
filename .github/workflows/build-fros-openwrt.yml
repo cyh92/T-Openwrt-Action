@@ -51,7 +51,7 @@ on:
 env:
   REPO_URL: http://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: ${{ github.event.inputs.defaultBranch }}
-  CONFIG_FILE: config/project/${{ github.event.inputs.config }}.config
+  CONFIG_FILE: config/fros/${{ github.event.inputs.config }}.config
   DIY_SH: scripts/project-openwrt.sh
   FEEDS_CONF: feeds/project/feeds.conf.default
   UPLOAD_BIN_DIR: true
