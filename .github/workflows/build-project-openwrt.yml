@@ -110,12 +110,11 @@ jobs:
         [ -e files ] && mv files $OPENWRTROOT/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config
         
-        if [${{ github.event.inputs.config }} !=:"glinet_gl-mt300n-v2"]
-        then          
+        if [ ${{ github.event.inputs.loadApp }} = true ]; then
           cat config/general-packages.config >> $OPENWRTROOT/.config
         else
-          echo "相等"
-        fi
+            echo "使用自定义插件"
+        fi      
         chmod +x $DIY_SH
         cd $OPENWRTROOT
         ../$DIY_SH ${{ github.event.inputs.defaultIP }}
