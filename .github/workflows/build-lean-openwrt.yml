@@ -20,16 +20,19 @@ on:
         description: '使用分支'
         required: true
         default: 'master'  
+    loadApp:
+        description: '是否加载插件'
+        required: true
+        default: true
+        type: boolean
     config:
      description: '选择设备'
      required: true
-     default: 'hiwifi'
+     default: 'nokia_ea0326gmp'
      type: choice
      options:
       - glinet_gl-mt300n-v2
       - mini
-      - h68k2
-      - cm520
       - nokia_ea0326gmp
       
 #  release:
@@ -104,7 +107,11 @@ jobs:
       run: |
         [ -e files ] && mv files $OPENWRTROOT/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config        
-        cat config/general-packages.config >> $OPENWRTROOT/.config
+        if [ ${{ github.event.inputs.loadApp }} = true ]; then
+          cat config/general-packages.config >> $OPENWRTROOT/.config
+        else
+            echo "使用自定义插件"
+        fi      
         chmod +x $DIY_SH
         cd $OPENWRTROOT
         ../$DIY_SH ${{ github.event.inputs.defaultIP }}
