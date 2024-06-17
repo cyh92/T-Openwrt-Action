@@ -28,12 +28,12 @@ on:
     config:
      description: '选择设备'
      required: true
-     default: 'hiwifi'
+     default: 'nokia_ea0326gmp'
      type: choice
      options:
       - hiwifi
       - x86
-      - mini
+      - nokia_ea0326gmp
       - rpi5s
       - glinet_gl-mt300n-v2
 #  release:
