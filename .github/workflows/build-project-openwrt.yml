@@ -49,7 +49,7 @@ on:
    types: started
 
 env:
-  REPO_URL: https://gitee.com/cyh92/ImmortalWrt.git
+  REPO_URL: http://github.com/immortalwrt/immortalwrt.git
   REPO_BRANCH: ${{ github.event.inputs.defaultBranch }}
   CONFIG_FILE: config/project/${{ github.event.inputs.config }}.config
   DIY_SH: scripts/project-openwrt.sh
