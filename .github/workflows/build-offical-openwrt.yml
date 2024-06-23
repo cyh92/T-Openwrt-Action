@@ -28,6 +28,7 @@ on:
      options:
       - hiwifi.config
       - mini.config     
+      - nokia_ea0326gmp.config
 #  release:
 #    types: published
 #  push:
@@ -81,6 +82,7 @@ jobs:
     - name: 加载自定义 feeds
       run: |
         # echo "src-git-full cyhpackage https://gitee.com/cyh92/cyhpackage.git" >> openwrt/feeds.conf.default
+        echo "src-git cyhpkg https://gitee.com/cyh92/cyhpackage.git" >> openwrt/feeds.conf.default
         cat openwrt/feeds.conf.default
         # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
 
