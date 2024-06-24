@@ -11,7 +11,7 @@ echo "设备IP参数为：$1";
 #cat package/base-files/files/bin/config_generate
 echo "启用无线"
 sed -i 's/disabled=1/disabled=0/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-sed -i 's/disabled=1/disabled=0/g' package/network/config/wifi-scripts/files/lib/wifi/mac80211.sh
+sed -i 's/disabled='1'/disabled='0'/g' package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
 
 # Clone Lean's latest sources.
 # pushd package
