@@ -115,6 +115,9 @@ jobs:
         else  
           cat config/mini-packages.config >> $OPENWRTROOT/.config
         fi     
+        echo "CONFIG_PACKAGE_luci-theme-argon=y" >> $OPENWRTROOT/.config        
+        echo "CONFIG_PACKAGE_default-settings-chn=y" >> $OPENWRTROOT/.config
+        
         cat $OPENWRTROOT/.config
         chmod +x $DIY_SH
         cd $OPENWRTROOT
