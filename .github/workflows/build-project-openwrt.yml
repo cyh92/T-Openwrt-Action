@@ -21,7 +21,7 @@ on:
         required: true
         default: 'v23.05.2'  
     loadApp:
-        description: '是否加载插件'
+        description: '加载完整插件'
         required: true
         default: true
         type: boolean
@@ -112,9 +112,10 @@ jobs:
         
         if [ ${{ github.event.inputs.loadApp }} = true ]; then
           cat config/general-packages.config >> $OPENWRTROOT/.config
-        else
-            echo "使用自定义插件"
-        fi      
+        else  
+          cat config/mini-packages.config >> $OPENWRTROOT/.config
+        fi     
+        cat $OPENWRTROOT/.config
         chmod +x $DIY_SH
         cd $OPENWRTROOT
         ../$DIY_SH ${{ github.event.inputs.defaultIP }}
