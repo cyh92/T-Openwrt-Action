@@ -102,6 +102,7 @@ jobs:
         chmod +x $DIY_SH
         cd $OPENWRTROOT
         ../$DIY_SH ${{ github.event.inputs.defaultIP }}
+        ls
  
     - name: 下载包文件
       id: package
