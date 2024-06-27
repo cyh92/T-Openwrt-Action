@@ -97,6 +97,8 @@ jobs:
         [ -e files ] && mv files $OPENWRTROOT/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config
         # cat config/general-packages.config >> $OPENWRTROOT/.config
+        git clone --depth 1 https://gitee.com/cyh92/cyhpackage.git -b device $OPENWRTROOT/DeviceConfig
+        cat $OPENWRTROOT/DeviceConfig/mini-packages.config
         chmod +x $DIY_SH
         cd $OPENWRTROOT
         ../$DIY_SH ${{ github.event.inputs.defaultIP }}
