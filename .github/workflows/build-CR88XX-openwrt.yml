@@ -15,7 +15,7 @@ on:
     defaultIP:
         description: '管理地址IP'
         required: true
-        default: '192.168.3.1'     
+        default: '192.168.6.1'     
     config:
      description: '选择设备'
      required: true
@@ -96,6 +96,8 @@ jobs:
       run: |
         [ -e files ] && mv files $OPENWRTROOT/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config
+        echo "CONFIG_PACKAGE_luci-theme-argon=y" >> $OPENWRTROOT/.config        
+        echo "CONFIG_PACKAGE_default-settings-chn=y" >> $OPENWRTROOT/.config
         cat config/general-packages.config >> $OPENWRTROOT/.config
         chmod +x $DIY_SH
         cd $OPENWRTROOT
