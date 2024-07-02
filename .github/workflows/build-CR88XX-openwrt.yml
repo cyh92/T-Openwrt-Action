@@ -99,6 +99,7 @@ jobs:
         echo "CONFIG_PACKAGE_luci-theme-argon=y" >> $OPENWRTROOT/.config        
         echo "CONFIG_PACKAGE_default-settings-chn=y" >> $OPENWRTROOT/.config
         cat config/general-packages.config >> $OPENWRTROOT/.config
+        cat $OPENWRTROOT/.config
         chmod +x $DIY_SH
         cd $OPENWRTROOT
         ../$DIY_SH ${{ github.event.inputs.defaultIP }}
