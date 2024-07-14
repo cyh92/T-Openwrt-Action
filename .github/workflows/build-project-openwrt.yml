@@ -34,7 +34,7 @@ on:
       - hiwifi
       - x86
       - nokia_ea0326gmp
-      - rpi5s
+      - zero2w
       - glinet_gl-mt300n-v2
 #  release:
 #    types: published
