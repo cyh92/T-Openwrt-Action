@@ -31,11 +31,11 @@ on:
      default: 'nokia_ea0326gmp'
      type: choice
      options:
-      - hiwifi
+      - cmcc_rax3000m
       - x86
       - nokia_ea0326gmp
       - zero2w
-      - glinet_gl-mt300n-v2
+      - glinet_gl-mt300n-v2      
 #  release:
 #    types: published
 #  push:
@@ -95,6 +95,7 @@ jobs:
        # echo "src-git-full cyhpackage https://gitee.com/cyh92/cyhpackage.git" >> openwrt/feeds.conf.default
        # echo "src-git-full small8 https://github.com/kenzok8/small-package" >> openwrt/feeds.conf.default
        echo "src-git cyhpkg https://gitee.com/cyh92/cyhpackage.git" >> openwrt/feeds.conf.default
+       echo 'src-git istore https://github.com/linkease/istore;main' >> feeds.conf.default
         cat openwrt/feeds.conf.default
         # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
 
