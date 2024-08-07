@@ -32,7 +32,7 @@ on:
      type: choice
      options:
       - glinet_gl-mt300n-v2
-      - mini
+      - cmcc_rax3000m
       - nokia_ea0326gmp
       
 #  release:
@@ -91,6 +91,8 @@ jobs:
     - name: 加载自定义 feeds
       run: |
         # echo "src-git-full cyhpackage https://gitee.com/cyh92/cyhpackage.git" >> openwrt/feeds.conf.default
+        echo "src-git cyhpkg https://gitee.com/cyh92/cyhpackage.git" >> openwrt/feeds.conf.default
+        echo 'src-git istore https://github.com/linkease/istore;main' >> openwrt/feeds.conf.default
         cat openwrt/feeds.conf.default
         #[ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
 
@@ -111,9 +113,13 @@ jobs:
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config        
         if [ ${{ github.event.inputs.loadApp }} = true ]; then
           cat config/general-packages.config >> $OPENWRTROOT/.config
-        else
-            echo "使用自定义插件"
-        fi      
+        else  
+          cat config/mini-packages.config >> $OPENWRTROOT/.config
+        fi     
+        echo "CONFIG_PACKAGE_luci-theme-argon=y" >> $OPENWRTROOT/.config        
+        echo "CONFIG_PACKAGE_default-settings-chn=y" >> $OPENWRTROOT/.config    
+        cat $OPENWRTROOT/.config
+           
         chmod +x $DIY_SH
         cd $OPENWRTROOT
         ../$DIY_SH ${{ github.event.inputs.defaultIP }}
