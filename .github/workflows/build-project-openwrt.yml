@@ -32,7 +32,7 @@ on:
      type: choice
      options:
       - cmcc_rax3000m
-      - x86
+      - cr6608
       - nokia_ea0326gmp
       - zero2w
       - r68s           
