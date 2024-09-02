@@ -87,7 +87,7 @@ jobs:
         df -hT $PWD
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         #下载固件配置
-        git clone --depth 1 https://gitee.com/cyh92/cyhpackage.git -b device config   
+        git clone --depth 1 https://gitee.com/cyh92/device.git -b config config  
         cd config
         ls
 
