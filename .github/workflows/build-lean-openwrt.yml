@@ -34,6 +34,7 @@ on:
       - glinet_gl-mt300n-v2
       - cmcc_rax3000m
       - nokia_ea0326gmp
+      - ct3003
       
 #  release:
 #    types: published
