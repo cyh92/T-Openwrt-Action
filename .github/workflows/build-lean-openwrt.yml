@@ -35,6 +35,7 @@ on:
       - cmcc_rax3000m
       - nokia_ea0326gmp
       - ct3003
+      - x86
       
 #  release:
 #    types: published
@@ -93,7 +94,7 @@ jobs:
       run: |
         # echo "src-git-full cyhpackage https://gitee.com/cyh92/cyhpackage.git" >> openwrt/feeds.conf.default
         echo "src-git cyhpkg https://gitee.com/cyh92/cyhpackage.git" >> openwrt/feeds.conf.default
-        # echo 'src-git istore https://github.com/linkease/istore;main' >> openwrt/feeds.conf.default
+        echo 'src-git istore https://github.com/linkease/istore;main' >> openwrt/feeds.conf.default
         echo 'src-git smpackage https://github.com/kenzok8/small-package' >> openwrt/feeds.conf.default
 
         cat openwrt/feeds.conf.default
