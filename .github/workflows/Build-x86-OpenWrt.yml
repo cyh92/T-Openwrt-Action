@@ -77,7 +77,7 @@ jobs:
 
     - name: 加载自定义 feeds
       run: |
-       # echo "src-git-full cyhpackage https://gitee.com/cyh92/cyhpackage.git" >> openwrt/feeds.conf.default
+       echo "src-git-full cyhpackage https://gitee.com/cyh92/cyhpackage.git" >> openwrt/feeds.conf.default
        # echo "src-git-full small8 https://github.com/kenzok8/small-package" >> openwrt/feeds.conf.default
        # echo "src-git oui https://gitee.com/cyh92/oui.git" >> openwrt/feeds.conf.default
         cat openwrt/feeds.conf.default
