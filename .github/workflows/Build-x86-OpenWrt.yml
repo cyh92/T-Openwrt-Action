@@ -43,7 +43,7 @@ on:
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: v23.05.2
-  CONFIG_FILE: config/oui/x86.config
+  CONFIG_FILE: config/project/${{ github.event.inputs.config }}.config
   DIY_SH: scripts/project-openwrt.sh
   FEEDS_CONF: feeds/offical/feeds.conf.default
   UPLOAD_BIN_DIR: true
