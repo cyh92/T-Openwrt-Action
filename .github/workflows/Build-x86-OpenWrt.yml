@@ -15,7 +15,12 @@ on:
     defaultIP:
         description: '管理地址IP'
         required: true
-        default: '192.168.3.1'         
+        default: '192.168.3.1'    
+    loadApp:
+        description: '加载完整插件'
+        required: true
+        default: true
+        type: boolean
     config:
      description: '选择设备'
      required: true
@@ -77,9 +82,10 @@ jobs:
 
     - name: 加载自定义 feeds
       run: |
-       echo "src-git-full cyhpackage https://gitee.com/cyh92/cyhpackage.git" >> openwrt/feeds.conf.default
+       # echo "src-git-full cyhpackage https://gitee.com/cyh92/cyhpackage.git" >> openwrt/feeds.conf.default
        # echo "src-git-full small8 https://github.com/kenzok8/small-package" >> openwrt/feeds.conf.default
-       # echo "src-git oui https://gitee.com/cyh92/oui.git" >> openwrt/feeds.conf.default
+       echo "src-git cyhpkg https://gitee.com/cyh92/cyhpackage.git" >> openwrt/feeds.conf.default
+       echo 'src-git istore https://github.com/linkease/istore;main' >> openwrt/feeds.conf.default
         cat openwrt/feeds.conf.default
        # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
 
@@ -98,8 +104,14 @@ jobs:
       run: |
         [ -e files ] && mv files $OPENWRTROOT/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config
-        # cat config/general-packages.config >> $OPENWRTROOT/.config        
-        cat config/mini-packages.config
+        if [ ${{ github.event.inputs.loadApp }} = true ]; then
+          cat config/general-packages.config >> $OPENWRTROOT/.config
+        else  
+          cat config/mini-packages.config >> $OPENWRTROOT/.config
+        fi     
+        echo "CONFIG_PACKAGE_luci-theme-argon=y" >> $OPENWRTROOT/.config        
+        echo "CONFIG_PACKAGE_default-settings-chn=y" >> $OPENWRTROOT/.config
+        cat $OPENWRTROOT/.config
         chmod +x $DIY_SH
         cd $OPENWRTROOT
         ../$DIY_SH ${{ github.event.inputs.defaultIP }}
