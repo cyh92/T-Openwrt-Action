@@ -49,13 +49,13 @@ rm -rf package/ctcgfw/r8168
 #在线设备
 git clone --depth=1 https://github.com/danchexiaoyang/luci-app-onliner package/luci-app-onliner
 #网络设置向导
-#git clone https://github.com/sirpdboy/luci-app-netwizard package/luci-app-netwizard
+git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/luci-app-netwizard
 #高级设置-Plus
-#git clone https://github.com/sirpdboy/luci-app-advancedplus package/luci-app-advancedplus
+git clone --depth=1 https://github.com/sirpdboy/luci-app-advancedplus package/luci-app-advancedplus
 #家长控制
 #git clone https://github.com/sirpdboy/luci-app-parentcontrol package/luci-app-parentcontrol
 #网络设置
-#git clone https://github.com/kiddin9/luci-app-wizard package/luci-app-wizard
+git clone --depth=1 https://github.com/kiddin9/luci-app-wizard package/luci-app-wizard
 #集客AC控制器
 #git clone https://github.com/Akimio521/luci-app-gecoosac package/luci-app-gecoosac
 #DNS转发器
