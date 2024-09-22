@@ -60,3 +60,10 @@ git clone --depth=1 https://github.com/kiddin9/luci-app-wizard package/luci-app-
 #git clone https://github.com/Akimio521/luci-app-gecoosac package/luci-app-gecoosac
 #DNS转发器
 git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
+
+# 删除自定义源默认的 argon 主题
+#rm -rf package/lean/luci-theme-argon
+# 部分第三方源自带 argon 主题，上面命令删除不掉的请运行下面命令
+find ./ -name luci-app-homeproxy | xargs rm -rf;
+
+git clone --depth=1 https://github.com/muink/luci-app-homeproxy package/luci-app-homeproxy
