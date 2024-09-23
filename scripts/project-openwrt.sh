@@ -65,5 +65,7 @@ git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mo
 #rm -rf package/lean/luci-theme-argon
 # 部分第三方源自带 argon 主题，上面命令删除不掉的请运行下面命令
 find ./ -name luci-app-homeproxy | xargs rm -rf;
-
 git clone --depth=1 https://github.com/muink/luci-app-homeproxy package/luci-app-homeproxy
+
+
+git clone --depth=1 https://github.com/linkease/nas-packages-luci package/nas-packages-luci
