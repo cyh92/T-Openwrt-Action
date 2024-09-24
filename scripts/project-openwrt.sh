@@ -68,4 +68,4 @@ find ./ -name luci-app-homeproxy | xargs rm -rf;
 git clone --depth=1 https://github.com/muink/luci-app-homeproxy package/luci-app-homeproxy
 
 
-git clone --depth=1 https://github.com/linkease/nas-packages-luci package/nas-packages-luci
+#git clone --depth=1 https://github.com/linkease/nas-packages-luci package/nas-packages-luci
