@@ -9,6 +9,8 @@
 sed -i "s/192.168.1.1/$1/g" package/base-files/files/bin/config_generate
 echo "设备IP参数为：$1";
 #cat package/base-files/files/bin/config_generate
+#删除冲突的插件
+rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
 # Add luci-app-ssr-plus
 # pushd package/lean
 # git clone --depth=1 https://github.com/fw876/helloworld
