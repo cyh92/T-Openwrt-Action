@@ -94,8 +94,8 @@ jobs:
 
     - name: 加载自定义 feeds
       run: |       
-       echo "src-git-full small8 https://github.com/kenzok8/small-package" >> openwrt/feeds.conf.default
-       #echo "src-git cyhpkg https://gitee.com/cyh92/cyhpackage.git" >> openwrt/feeds.conf.default
+       #echo "src-git-full small8 https://github.com/kenzok8/small-package" >> openwrt/feeds.conf.default
+       echo "src-git cyhpkg https://gitee.com/cyh92/cyhpackage.git" >> openwrt/feeds.conf.default
        #echo 'src-git istore https://github.com/linkease/istore;main' >> openwrt/feeds.conf.default
         cat openwrt/feeds.conf.default
         # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
