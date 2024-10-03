@@ -67,5 +67,6 @@ git clone --depth=1 https://github.com/kiddin9/luci-app-wizard package/luci-app-
 find ./ -name luci-app-homeproxy | xargs rm -rf;
 git clone --depth=1 https://github.com/muink/luci-app-homeproxy package/luci-app-homeproxy
 find ./ -name luci-app-passwall | xargs rm -rf;
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
+
 #git clone --depth=1 https://github.com/linkease/nas-packages-luci package/nas-packages-luci
